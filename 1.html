@@ -8,26 +8,69 @@
 <!--
 Обязательное задание.
 
-Необходимо с помощью цикла for вывести следующие 11 строк в консоль:
-0 – это ноль
-1 – нечетное число
-2 – четное число
-3 – нечетное число
-…
-10 – четное число
+Необходимо данное задание выполнить в es5 стиле и в es6 стиле.
+Необходимо создать функцию-конструктор/класс для продукта.
+Названия: `ProductES5` для es5 стиля, `ProductES6` для es6 стиля.
+При создании объекта от функции-конструктора/класса необходимо передавать имя
+и цену товара, эта информация должна быть сохранена в объекте.
+Также у объекта должна быть возможность выполнить метод `make25Discount`, данный
+метод должен уменьшать стоимость продукта на 25%.
+Необходимо продемонстрировать работу с объектом (в свободной форме).
 -->
 <script>
   "use strict";
 
-  for(let i = 0; i < 11; i++) {
-    if (i === 0) {
-      console.log('0 - это ноль');
-    } else if (i % 2 > 0) {
-      console.log(i + ' - это нечетное число');
-    } else if (i % 2 === 0) {
-      console.log(i + ' - это четное число');
+  /**
+   * Конструктор класса продукта
+   * 
+   * @param {string} name - Название продукта
+   * @param {number} price - Цена продукта
+   * @return {object} - Объект класса
+   */
+  function ProductES5(name, price) {
+    this.name = name;
+    this.price = price;
+  }
+
+  /**
+   * Метод для уменьшения стоимости продукта на 25%
+   */
+  ProductES5.prototype.make25Discount = function() {
+    this.price -= this.price * 0.25;
+  };
+
+  /**
+   * Класс продукта
+   */
+  class ProductES6 {
+    /**
+     * Конструктор класса продукта
+     * 
+     * @param {string} name - Название продукта
+     * @param {number} price - Цена продукта
+     * @return {object} - Объект класса
+     */
+    constructor(name, price) {
+      this.name = name;
+      this.price = price;
+    }
+
+    /**
+     * Метод для уменьшения стоимости продукта на 25%
+     */
+    make25Discount() {
+      this.price -= this.price * 0.25;
     }
   }
+
+  const NewProductES5 = new ProductES5('Apple Iphone 13', 100000);
+  NewProductES5.make25Discount();
+  console.log(NewProductES5);
+
+  const NewProductES6 = new ProductES6('Apple Iphone 13 Pro', 100000);
+  NewProductES6.make25Discount();
+  console.log(NewProductES6);
+
 </script>
 </body>
 </html>
